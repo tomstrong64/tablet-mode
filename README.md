@@ -1,10 +1,8 @@
 # Linux Tablet Mode Controller
 
-This service detects when the laptop is in tablet or laptop mode and changes display settings accordingly.
+This service detects when the laptop screen is folded over for use as a tablet and enables screen auto rotation, this is reverted when the laptop screen is folded back into the normal position.
 
-This has only been tested and proven working on a Lenovo Ideapad Flex 5 with Linux Mint installed.
-
-Help is welcome to improve the compatibility with other devices and to improve the setup.
+This has only been tested and proven working on a Lenovo Ideapad Flex 5 with Linux Mint installed. Help is welcome to improve the compatibility with other devices.
 
 ## Setup
 
