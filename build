@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gcc -o bin/tablet-mode src/main.c
