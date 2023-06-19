@@ -1,0 +1,1 @@
+KERNEL=="event10", SUBSYSTEM=="input", MODE="0664"

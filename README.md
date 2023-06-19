@@ -4,31 +4,36 @@ This service detects when the laptop is in tablet or laptop mode and changes dis
 
 This has only been tested and proven working on a Lenovo Ideapad Flex 5 with Linux Mint installed.
 
-I am looking to make the service more flexible to easily setup on other devices.
+Help is welcome to improve the compatibility with other devices and to improve the setup.
 
 ## Setup
 
-Copy the binary file into `/usr/local/bin` for the script.
-
-Copy the rule file into `/etc/udev/rules.d` to ensure that the event file for the laptop hinge is always readable by the user.
-
-Copy the systemd service file into `/etc/systemd/user` to allow the script to run as a service.
-
-Run the service as the user:
+Install the debian package, then run the service as the user:
 
 ```bash
 systemctl --user daemon-reload
 systemctl --user start tablet-mode.service
+systemctl --user enable tablet-mode.service
 ```
 
-Test it is working, if check the service with:
+## How it works
+
+I went through the events in `/dev/input`, running `cat inputX | od -x --width=24` and folding the screen back and forth until one produced an output at the time of folding to tablet mode and folding it back.
+
+Below was the output of `event10`:
+
+![event10 output](./docs/images/event_output.png)
+
+The output was consitent to this format, so I wrote the code to watch the output for the 0x42 and 0x43 values to determine which state it should be in.
+When it detects the laptop to be in tablet mode, it runs the following command to turn off screen orientation lock:
 
 ```bash
-systemctl --user status tablet-mode.service
+gsettings set org.cinnamon.settings-daemon.peripherals.touchscreen orientation-lock false
 ```
 
-If it is working, enable it to run on startup
+When it detects the laptop lid is opened, it runs the following 2 commands to enable screen orientation lock and to set the screen orientation to normal:
 
 ```bash
-systemctl --user enable table-mode.service
+gsettings set org.cinnamon.settings-daemon.peripherals.touchscreen orientation-lock true
+xrandr -o normal
 ```

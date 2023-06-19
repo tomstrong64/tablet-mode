@@ -1,0 +1,10 @@
+[Unit]
+Description=Detects when the 2in1 laptop is in tablet mode or laptop mode and sets screen settings accordingingly.
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/tablet-mode
+Restart=always
+
+[Install]
+WantedBy=default.target

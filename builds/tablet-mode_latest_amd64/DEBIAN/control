@@ -1,0 +1,8 @@
+Package: tablet-mode
+Version: 1.0.0
+Architecture: amd64
+Essential: no
+Priority: optional
+Depends:
+Maintainer: Tom Strong
+Description: A simple script to enable/disable screen autorotate on a 2-in-1 laptop when switching between tablet and laptop mode.

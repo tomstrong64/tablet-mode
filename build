@@ -1,3 +1,5 @@
 #!/bin/bash
 
-gcc -o bin/tablet-mode src/main.c
+mkdir -p builds/tablet-mode_latest_amd64/usr/bin
+gcc -o builds/tablet-mode_latest_amd64/usr/bin/tablet-mode src/main.c
+chmod +x builds/tablet-mode_latest_amd64/usr/bin/tablet-mode
